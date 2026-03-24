@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Karta KPP</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    margin: 20px;
+}
+
+.karta-container {
+    max-width: 800px;       /* szerokość karty */
+    margin: 0 auto;         /* wyśrodkowanie */
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;             /* tabelki zajmują całą szerokość kontenera */
+}
+
+td, th {
+    border: 1px solid #000;
+    padding: 4px;
+    font-size: 12px;
+    vertical-align: top;
+}
+
+.header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.section-title {
+    font-weight: bold;
+    background: #eee;
+}
+
+.box {
+    height: 40px;
+}
+
+.diagram {
+    height: 200px;
+}
+
+input[type=text], textarea {
+    font-size: 11px;
+    padding: 2px;
+    width: 95%;
+}
+
+.abc-container {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="karta-container">
+
+<div class="header">KARTA UDZIELONEJ KWALIFIKOWANEJ PIERWSZEJ POMOCY</div>
+
+<table>
+<tr>
+<td colspan="2">Data i miejsce zdarzenia<br><input type="text"></td>
+</tr>
+<tr>
+<td colspan="2">Nazwisko i imię ratownika<br><input type="text"></td>
+</tr>
+</table>
+
+<table>
+<tr><td colspan="4" class="section-title">INFORMACJA O POSZKODOWANYM</td></tr>
+<tr>
+<td>Płeć<br><input type="text"></td>
+<td>Data urodzenia<br><input type="text"></td>
+<td>Nazwisko<br><input type="text"></td>
+<td>Imię<br><input type="text"></td>
+</tr>
+<tr>
+<td colspan="4">Uwagi<br><textarea style="height:60px"></textarea></td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td style="width:50%" class="section-title">AVPU</td>
+<td style="width:50%" class="section-title">PARAMETRY</td>
+</tr>
+<tr>
+<td>
+<label><input type="radio" name="avpu"> A</label><br>
+<label><input type="radio" name="avpu"> V</label><br>
+<label><input type="radio" name="avpu"> P</label><br>
+<label><input type="radio" name="avpu"> U</label>
+</td>
+<td>
+<table style="width:100%">
+<tr>
+<td>SpO2</td>
+<td>Tętno</td>
+<td>Oddech</td>
+<td>Kapilarny</td>
+</tr>
+<tr>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td>
+<label><input type="radio" name="kap"> ≤2s</label><br>
+<label><input type="radio" name="kap"> >2s</label>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<table>
+<tr><td colspan="2" class="section-title">WYWIAD SAMPLE</td></tr>
+<tr><td>S</td><td><input type="text"></td></tr>
+<tr><td>A</td><td><input type="text"></td></tr>
+<tr><td>M</td><td><input type="text"></td></tr>
+<tr><td>P</td><td><input type="text"></td></tr>
+<tr><td>L</td><td><input type="text"></td></tr>
+<tr><td>E</td><td><input type="text"></td></tr>
+</table>
+
+<table style="width:100%">
+<tr>
+<td style="width:50%" class="section-title">ABC</td>
+<td style="width:50%" class="section-title">RODZAJ OBRAŻEŃ</td>
+</tr>
+
+<tr>
+<td style="vertical-align:top">
+
+<b>A (drożność dróg oddechowych)</b><br>
+<label><input type="checkbox"> drożne</label>
+<label><input type="checkbox"> udrożniono:</label> 
+<label><input type="checkbox"> bezprzyrządowo</label>
+<label><input type="checkbox"> odessano</label><br>
+
+<label><input type="checkbox"> rurka U - G</label>
+<label><input type="checkbox"> przyrząd nadgłośniowy</label>
+
+<br><br>
+
+<b>B (ocena oddechu)</b><br>
+<label><input type="checkbox"> obecny</label>
+<label><input type="checkbox"> brak prawidłowego oddechu</label><br>
+
+<label><input type="checkbox"> tlenoterapia bierna</label>
+<label><input type="checkbox"> tlenoterapia czynna</label>
+<label><input type="checkbox"> respirator</label>
+
+<br><br>
+
+<b>C (ocena krążenia)</b><br>
+<label><input type="checkbox"> obecne</label>
+<label><input type="checkbox"> centralizacja</label>
+<label><input type="checkbox"> brak</label>
+
+</td>
+
+<td style="vertical-align:top">
+
+<table style="width:100%">
+
+<tr>
+<td>odmrożenie <input type="checkbox"></td>
+<td>skażenie <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>podtopienie <input type="checkbox"></td>
+<td>zatrucie wziewne <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>obrażenia głowy <input type="checkbox"></td>
+<td>podejrzenie obrażeń kręgosłupa <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>podejrzenia obrażeń klatki piersiowej <input type="checkbox"></td>
+<td>podejrzenia obrażeń jamy brzusznej <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>podejrzenie obrażeń miednicy <input type="checkbox"></td>
+<td>złamania i podejrzenia złamań kończyn <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>zwichnięcia / skręcenia <input type="checkbox"></td>
+<td>rany, krwotoki <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>amputacja <input type="checkbox"></td>
+<td>zmiażdżenie <input type="checkbox"></td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td style="width:50%; vertical-align:top">
+
+<table style="width:100%">
+<tr><td class="section-title">RODZAJ OBJAWÓW</td></tr>
+<tr>
+<td>
+<div style="display:flex; gap:15px; max-width:700px">
+
+<div style="flex:1">
+<label><input type="checkbox"> drgawki</label><br>
+<label><input type="checkbox"> nudności / wymioty</label><br>
+<label><input type="checkbox"> zaburzenia zachowania</label><br>
+<label><input type="checkbox"> ból w klatce piersiowej</label><br>
+<label><input type="checkbox"> anafilaksja</label><br>
+<label><input type="checkbox"> ciąża</label>
+</div>
+
+<div style="flex:1">
+<label><input type="checkbox"> wstrząs</label><br>
+<label><input type="checkbox"> duszność</label><br>
+<label><input type="checkbox"> omdlenie</label><br>
+<label><input type="checkbox"> wychłodzenie</label><br>
+<label><input type="checkbox"> zatrzymanie krążenia</label><br>
+<label>
+<input type="checkbox"> inne:
+<input type="text" style="width:55%">
+</label>
+</div>
+
+</div>
+</td>
+</tr>
+</table>
+
+</td>
+
+<td style="width:50%; vertical-align:top">
+
+<table style="width:100%">
+<tr><td colspan="2" class="section-title">POSTĘPOWANIE</td></tr>
+
+<tr>
+<td>wsparcie psychiczne <input type="checkbox"></td>
+<td>termoizolacja <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>pozycja: bezpieczna <input type="checkbox"> zastana <input type="checkbox"></td>
+<td>na wznak <input type="checkbox"> siedząca <input type="checkbox"> fizjologiczna <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>pozycja: na lewym boku <input type="checkbox"></td>
+<td>z ugiętymi kończ. dolnymi <input type="checkbox"> dogodna <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>usunięcie ciał obcych <input type="checkbox"></td>
+<td>dekontaminacja <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>uciśn. kl. piers. <input type="checkbox"> użycie AED <input type="checkbox"></td>
+<td>liczba wyładowań: ............</td>
+</tr>
+
+<tr>
+<td>ograniczenie ruch. kręgosłupa <input type="checkbox"></td>
+<td>unieruchomienie złamań/zwichnięć <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>nosze deska <input type="checkbox"> kołnierz szyjny <input type="checkbox"></td>
+<td>szyny Kramera <input type="checkbox"> nosze podbierakowe <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>ograniczenie ruch. miednicy <input type="checkbox"></td>
+<td>pas do stabilizacji <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>opat. wentyl. chemostatyczny <input type="checkbox"></td>
+<td>zabezpieczenie amputowanych tkanek <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>opatrunek: osłaniający <input type="checkbox"> uciskowy <input type="checkbox"></td>
+<td>staza taktyczna godz: ............ <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td>schładzanie: woda <input type="checkbox"></td>
+<td>opatrunek hydrożelowy <input type="checkbox"></td>
+</tr>
+
+<tr>
+<td colspan="2">monitorowanie poszkodowanego <input type="checkbox"></td>
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+</table>
+
+<table>
+<tr><td class="section-title">PODPIS</td></tr>
+
+<tr>
+<td style="height:60px; vertical-align:bottom">
+Podpis ratownika:
+<input type="text" style="border:none; border-bottom:1px solid #000; width:300px; margin-left:10px;">
+</td>
+</tr>
+
+</table>
+
+</div> <!-- koniec karta-container -->
+
+</body>
+</html>
