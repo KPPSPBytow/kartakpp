@@ -249,6 +249,34 @@ async function wyslijDiscord() {
                             },
 
                             {
+                                name: "🧠 Stan świadomości (AVPU)",
+                                value: val("avpu"),
+                                inline: false
+                            },
+
+                            {
+                                name: "📊 Parametry",
+                                value:
+`**SpO2:** ${val("spo2")}
+**Tętno:** ${val("tetno")}
+**Oddech:** ${val("oddech")}
+**Kapilarny:** ${val("kapilarny")}`,
+                                inline: false
+                            },
+
+                            {
+                                name: "📝 Wywiad SAMPLE",
+                                value:
+`**S (objawy):** ${val("sample_s")}
+**A (alergie):** ${val("sample_a")}
+**M (leki):** ${val("sample_m")}
+**P (choroby):** ${val("sample_p")}
+**L (posiłek):** ${val("sample_l")}
+**E (zdarzenie):** ${val("sample_e")}`,
+                                inline: false
+                            },
+
+                            {
                                 name: "🫀 ABC",
                                 value:
 `**A:** ${getChecked(
