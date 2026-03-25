@@ -4,92 +4,41 @@
 <meta charset="UTF-8">
 <title>Karta KPP</title>
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f9f9f9;
-    margin: 20px;
-}
-
-.karta-container {
-    max-width: 800px;       /* szerokość karty */
-    margin: 0 auto;         /* wyśrodkowanie */
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;             /* tabelki zajmują całą szerokość kontenera */
-}
-
-td, th {
-    border: 1px solid #000;
-    padding: 4px;
-    font-size: 12px;
-    vertical-align: top;
-}
-
-.header {
-    text-align: center;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 10px;
-}
-
-.section-title {
-    font-weight: bold;
-    background: #eee;
-}
-
-.box {
-    height: 40px;
-}
-
-.diagram {
-    height: 200px;
-}
-
-input[type=text], textarea {
-    font-size: 11px;
-    padding: 2px;
-    width: 95%;
-}
-
-.abc-container {
-    padding-left: 20px;
-    padding-right: 20px;
-}
+body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 20px; }
+.karta-container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+table { border-collapse: collapse; width: 100%; }
+td, th { border: 1px solid #000; padding: 4px; font-size: 12px; vertical-align: top; }
+.header { text-align: center; font-weight: bold; font-size: 16px; padding: 10px; }
+.section-title { font-weight: bold; background: #eee; }
+input[type=text], textarea { font-size: 11px; padding: 2px; width: 95%; }
 </style>
 </head>
 <body>
 
 <div class="karta-container">
+<form id="kppForm">
 
 <div class="header">KARTA UDZIELONEJ KWALIFIKOWANEJ PIERWSZEJ POMOCY</div>
 
+<!-- Dane podstawowe -->
 <table>
-<tr>
-<td colspan="2">Data i miejsce zdarzenia<br><input type="text"></td>
-</tr>
-<tr>
-<td colspan="2">Nazwisko i imię ratownika<br><input type="text"></td>
-</tr>
+<tr><td colspan="2">Data i miejsce zdarzenia<br><input type="text" name="data_miejsce"></td></tr>
+<tr><td colspan="2">Nazwisko i imię ratownika<br><input type="text" name="ratownik"></td></tr>
 </table>
 
+<!-- Informacje o poszkodowanym -->
 <table>
 <tr><td colspan="4" class="section-title">INFORMACJA O POSZKODOWANYM</td></tr>
 <tr>
-<td>Płeć<br><input type="text"></td>
-<td>Data urodzenia<br><input type="text"></td>
-<td>Nazwisko<br><input type="text"></td>
-<td>Imię<br><input type="text"></td>
+<td>Płeć<br><input type="text" name="plec"></td>
+<td>Data urodzenia<br><input type="text" name="data_urodzenia"></td>
+<td>Nazwisko<br><input type="text" name="nazwisko"></td>
+<td>Imię<br><input type="text" name="imie"></td>
 </tr>
-<tr>
-<td colspan="4">Uwagi<br><textarea style="height:60px"></textarea></td>
-</tr>
+<tr><td colspan="4">Uwagi<br><textarea name="uwagi" style="height:60px"></textarea></td></tr>
 </table>
 
+<!-- AVPU i parametry -->
 <table>
 <tr>
 <td style="width:50%" class="section-title">AVPU</td>
@@ -97,10 +46,10 @@ input[type=text], textarea {
 </tr>
 <tr>
 <td>
-<label><input type="radio" name="avpu"> A</label><br>
-<label><input type="radio" name="avpu"> V</label><br>
-<label><input type="radio" name="avpu"> P</label><br>
-<label><input type="radio" name="avpu"> U</label>
+<label><input type="radio" name="avpu" value="A"> A</label><br>
+<label><input type="radio" name="avpu" value="V"> V</label><br>
+<label><input type="radio" name="avpu" value="P"> P</label><br>
+<label><input type="radio" name="avpu" value="U"> U</label>
 </td>
 <td>
 <table style="width:100%">
@@ -111,12 +60,12 @@ input[type=text], textarea {
 <td>Kapilarny</td>
 </tr>
 <tr>
-<td><input type="text"></td>
-<td><input type="text"></td>
-<td><input type="text"></td>
+<td><input type="text" name="spo2"></td>
+<td><input type="text" name="tetno"></td>
+<td><input type="text" name="oddech"></td>
 <td>
-<label><input type="radio" name="kap"> ≤2s</label><br>
-<label><input type="radio" name="kap"> >2s</label>
+<label><input type="radio" name="kapilarny" value="≤2s"> ≤2s</label><br>
+<label><input type="radio" name="kapilarny" value=">2s"> >2s</label>
 </td>
 </tr>
 </table>
@@ -124,220 +73,257 @@ input[type=text], textarea {
 </tr>
 </table>
 
+<!-- Wywiad SAMPLE -->
 <table>
 <tr><td colspan="2" class="section-title">WYWIAD SAMPLE</td></tr>
-<tr><td>S</td><td><input type="text"></td></tr>
-<tr><td>A</td><td><input type="text"></td></tr>
-<tr><td>M</td><td><input type="text"></td></tr>
-<tr><td>P</td><td><input type="text"></td></tr>
-<tr><td>L</td><td><input type="text"></td></tr>
-<tr><td>E</td><td><input type="text"></td></tr>
+<tr><td>S - (Objawy/symptomy)</td><td><input type="text" name="sample_s"></td></tr>
+<tr><td>A - alergie</td><td><input type="text" name="sample_a"></td></tr>
+<tr><td>M - medykamenty</td><td><input type="text" name="sample_m"></td></tr>
+<tr><td>P - przebyte choroby</td><td><input type="text" name="sample_p"></td></tr>
+<tr><td>L - posiłek</td><td><input type="text" name="sample_l"></td></tr>
+<tr><td>E - opis zdarzenia</td><td><input type="text" name="sample_e"></td></tr>
 </table>
 
+<!-- ABC -->
 <table style="width:100%">
 <tr>
 <td style="width:50%" class="section-title">ABC</td>
 <td style="width:50%" class="section-title">RODZAJ OBRAŻEŃ</td>
 </tr>
-
 <tr>
 <td style="vertical-align:top">
-
 <b>A (drożność dróg oddechowych)</b><br>
-<label><input type="checkbox"> drożne</label>
-<label><input type="checkbox"> udrożniono:</label> 
-<label><input type="checkbox"> bezprzyrządowo</label>
-<label><input type="checkbox"> odessano</label><br>
+<label><input type="checkbox" name="A_drozne"> drożne</label><br>
+<label><input type="checkbox" name="A_udrozniono_bezprzyrz">udrozniono: bezprzyrządowo</label><br>
+<label><input type="checkbox" name="A_odessano">udrozniono: odessano</label><br>
+<label><input type="checkbox" name="A_rurka"> rurka U-G</label><br>
+<label><input type="checkbox" name="A_nadglosniowy"> przyrząd nadgłośniowy</label>
 
-<label><input type="checkbox"> rurka U - G</label>
-<label><input type="checkbox"> przyrząd nadgłośniowy</label>
+<br><b>B (oddech)</b><br>
+<label><input type="checkbox" name="B_obecny"> obecny</label><br>
+<label><input type="checkbox" name="B_brak"> brak prawidłowego oddechu</label><br>
+<label><input type="checkbox" name="B_bierna"> tlenoterapia bierna</label><br>
+<label><input type="checkbox" name="B_czynna"> tlenoterapia czynna</label><br>
+<label><input type="checkbox" name="B_respirator"> respirator</label>
 
-<br><br>
-
-<b>B (ocena oddechu)</b><br>
-<label><input type="checkbox"> obecny</label>
-<label><input type="checkbox"> brak prawidłowego oddechu</label><br>
-
-<label><input type="checkbox"> tlenoterapia bierna</label>
-<label><input type="checkbox"> tlenoterapia czynna</label>
-<label><input type="checkbox"> respirator</label>
-
-<br><br>
-
-<b>C (ocena krążenia)</b><br>
-<label><input type="checkbox"> obecne</label>
-<label><input type="checkbox"> centralizacja</label>
-<label><input type="checkbox"> brak</label>
-
+<br><b>C (krążenie)</b><br>
+<label><input type="checkbox" name="C_obecne"> obecne</label><br>
+<label><input type="checkbox" name="C_centralizacja"> centralizacja</label><br>
+<label><input type="checkbox" name="C_brak"> brak</label>
 </td>
-
 <td style="vertical-align:top">
-
-<table style="width:100%">
-
-<tr>
-<td>odmrożenie <input type="checkbox"></td>
-<td>skażenie <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>podtopienie <input type="checkbox"></td>
-<td>zatrucie wziewne <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>obrażenia głowy <input type="checkbox"></td>
-<td>podejrzenie obrażeń kręgosłupa <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>podejrzenia obrażeń klatki piersiowej <input type="checkbox"></td>
-<td>podejrzenia obrażeń jamy brzusznej <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>podejrzenie obrażeń miednicy <input type="checkbox"></td>
-<td>złamania i podejrzenia złamań kończyn <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>zwichnięcia / skręcenia <input type="checkbox"></td>
-<td>rany, krwotoki <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>amputacja <input type="checkbox"></td>
-<td>zmiażdżenie <input type="checkbox"></td>
-</tr>
-
-</table>
-
+<label><input type="checkbox" name="odmrozenie"> odmrożenie</label><br>
+<label><input type="checkbox" name="skazenie"> skażenie</label><br>
+<label><input type="checkbox" name="podtopienie"> podtopienie</label><br>
+<label><input type="checkbox" name="zatrucie_wziewne"> zatrucie wziewne</label><br>
+<label><input type="checkbox" name="obrazenia_glowy"> obrażenia głowy</label><br>
+<label><input type="checkbox" name="podejrzenie_kregoslupa"> podejrzenie kręgosłupa</label><br>
+<label><input type="checkbox" name="podejrzenie_klatki"> podejrzenie klatki piersiowej</label><br>
+<label><input type="checkbox" name="podejrzenie_jamy"> podejrzenie jamy brzusznej</label><br>
+<label><input type="checkbox" name="podejrzenie_miednicy"> podejrzenie miednicy</label><br>
+<label><input type="checkbox" name="zlomania_koncyn"> złamania/kończyn</label><br>
+<label><input type="checkbox" name="zwichniecia_skrecenia"> zwichnięcia/skręcenia</label><br>
+<label><input type="checkbox" name="rany_krwotoki"> rany/krwotoki</label><br>
+<label><input type="checkbox" name="amputacja"> amputacja</label><br>
+<label><input type="checkbox" name="zmiazdzenie"> zmiażdżenie</label>
 </td>
 </tr>
 </table>
 
+<!-- OBJAWY -->
 <table>
 <tr>
 <td style="width:50%; vertical-align:top">
-
 <table style="width:100%">
 <tr><td class="section-title">RODZAJ OBJAWÓW</td></tr>
-<tr>
-<td>
-<div style="display:flex; gap:15px; max-width:700px">
-
-<div style="flex:1">
-<label><input type="checkbox"> drgawki</label><br>
-<label><input type="checkbox"> nudności / wymioty</label><br>
-<label><input type="checkbox"> zaburzenia zachowania</label><br>
-<label><input type="checkbox"> ból w klatce piersiowej</label><br>
-<label><input type="checkbox"> anafilaksja</label><br>
-<label><input type="checkbox"> ciąża</label>
-</div>
-
-<div style="flex:1">
-<label><input type="checkbox"> wstrząs</label><br>
-<label><input type="checkbox"> duszność</label><br>
-<label><input type="checkbox"> omdlenie</label><br>
-<label><input type="checkbox"> wychłodzenie</label><br>
-<label><input type="checkbox"> zatrzymanie krążenia</label><br>
-<label>
-<input type="checkbox"> inne:
-<input type="text" style="width:55%">
-</label>
-</div>
-
-</div>
-</td>
-</tr>
+<tr><td>
+<label><input type="checkbox" name="drgawki"> drgawki</label><br>
+<label><input type="checkbox" name="nudnosci"> nudności / wymioty</label><br>
+<label><input type="checkbox" name="zaburzenia_zachowania"> zaburzenia zachowania</label><br>
+<label><input type="checkbox" name="bol_klatki"> ból w klatce piersiowej</label><br>
+<label><input type="checkbox" name="anafilaksja"> anafilaksja</label><br>
+<label><input type="checkbox" name="ciaza"> ciąża</label><br>
+<label><input type="checkbox" name="wstrzas"> wstrząs</label><br>
+<label><input type="checkbox" name="duszność"> duszność</label><br>
+<label><input type="checkbox" name="omdlenie"> omdlenie</label><br>
+<label><input type="checkbox" name="wychlodzenie"> wychłodzenie</label><br>
+<label><input type="checkbox" name="zatrzymanie_krazenia"> zatrzymanie krążenia</label><br>
+<label>inne: <input type="text" name="inne_objawy" style="width:60%"></label>
+</td></tr>
 </table>
-
 </td>
 
 <td style="width:50%; vertical-align:top">
-
 <table style="width:100%">
-<tr><td colspan="2" class="section-title">POSTĘPOWANIE</td></tr>
-
-<tr>
-<td>wsparcie psychiczne <input type="checkbox"></td>
-<td>termoizolacja <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>pozycja: bezpieczna <input type="checkbox"> zastana <input type="checkbox"></td>
-<td>na wznak <input type="checkbox"> siedząca <input type="checkbox"> fizjologiczna <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>pozycja: na lewym boku <input type="checkbox"></td>
-<td>z ugiętymi kończ. dolnymi <input type="checkbox"> dogodna <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>usunięcie ciał obcych <input type="checkbox"></td>
-<td>dekontaminacja <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>uciśn. kl. piers. <input type="checkbox"> użycie AED <input type="checkbox"></td>
-<td>liczba wyładowań: ............</td>
-</tr>
-
-<tr>
-<td>ograniczenie ruch. kręgosłupa <input type="checkbox"></td>
-<td>unieruchomienie złamań/zwichnięć <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>nosze deska <input type="checkbox"> kołnierz szyjny <input type="checkbox"></td>
-<td>szyny Kramera <input type="checkbox"> nosze podbierakowe <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>ograniczenie ruch. miednicy <input type="checkbox"></td>
-<td>pas do stabilizacji <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>opat. wentyl. chemostatyczny <input type="checkbox"></td>
-<td>zabezpieczenie amputowanych tkanek <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>opatrunek: osłaniający <input type="checkbox"> uciskowy <input type="checkbox"></td>
-<td>staza taktyczna godz: ............ <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td>schładzanie: woda <input type="checkbox"></td>
-<td>opatrunek hydrożelowy <input type="checkbox"></td>
-</tr>
-
-<tr>
-<td colspan="2">monitorowanie poszkodowanego <input type="checkbox"></td>
-</tr>
-
+<tr><td class="section-title">POSTĘPOWANIE</td></tr>
+<tr><td><label><input type="checkbox" name="wsparcie_psychiczne"> wsparcie psychiczne</label></td></tr>
+<tr><td><label><input type="checkbox" name="termoizolacja"> termoizolacja</label></td></tr>
+<tr><td><label><input type="checkbox" name="pozycja_bezpieczna"> pozycja bezpieczna</label></td></tr>
+<tr><td><label><input type="checkbox" name="pozycja_wznak"> na wznak</label></td></tr>
+<tr><td><label><input type="checkbox" name="usuniecie_cial_obcych"> usunięcie ciał obcych</label></td></tr>
+<tr><td><label><input type="checkbox" name="uciśn_kl_piers"> uciśnięcie klatki piersiowej</label></td></tr>
+<tr><td><label><input type="checkbox" name="aed"> użycie AED</label></td></tr>
+<tr><td><label><input type="checkbox" name="ograniczenie_kregoslupa"> ograniczenie ruchów kręgosłupa</label></td></tr>
+<tr><td><label><input type="checkbox" name="unieruchomienie_zl"> unieruchomienie złamań/zwichnięć</label></td></tr>
+<tr><td><label><input type="checkbox" name="nosze_deska"> nosze deska</label></td></tr>
+<tr><td><label><input type="checkbox" name="kolnierz_szyjny"> kołnierz szyjny</label></td></tr>
+<tr><td><label><input type="checkbox" name="pas_stabilizacji"> pas do stabilizacji</label></td></tr>
+<tr><td><label><input type="checkbox" name="opat_wentyl"> opatrunek wentylacyjny/chemostatyczny</label></td></tr>
+<tr><td><label><input type="checkbox" name="zabezpieczenie_amputowanych"> zabezpieczenie amputowanych tkanek</label></td></tr>
+<tr><td><label><input type="checkbox" name="opatrunek_osl"> opatrunek osłaniający</label></td></tr>
+<tr><td><label><input type="checkbox" name="opatrunek_ucisk"> opatrunek uciskowy</label></td></tr>
+<tr><td><label><input type="checkbox" name="staza_taktyczna"> staza taktyczna</label></td></tr>
+<tr><td><label><input type="checkbox" name="monitorowanie"> monitorowanie poszkodowanego</label></td></tr>
 </table>
-
 </td>
-
 </tr>
 </table>
 
+<!-- PODPIS -->
 <table>
 <tr><td class="section-title">PODPIS</td></tr>
-
 <tr>
 <td style="height:60px; vertical-align:bottom">
-Podpis ratownika:
-<input type="text" style="border:none; border-bottom:1px solid #000; width:300px; margin-left:10px;">
+Podpis ratownika: <input type="text" name="podpis" style="border:none; border-bottom:1px solid #000; width:300px; margin-left:10px;">
 </td>
 </tr>
-
 </table>
 
-</div> <!-- koniec karta-container -->
+<div style="text-align:center; margin-top:20px;">
+<button type="button" onclick="wyslijDiscord()">Wyślij na Discord</button>
+</div>
+
+</form>
+</div>
+
+<script>
+async function wyslijDiscord() {
+    const webhookURL = "https://discord.com/api/webhooks/1486051253132988556/h7sJEBBGYvPjkPYGltOUeR34ONLB2anqdDysTCKUgHWka4CknGivN21YQ3Pi7poSD-fd";
+    const form = document.getElementById("kppForm");
+    const formData = new FormData(form);
+
+    function val(name) {
+        return formData.get(name) || "brak";
+    }
+
+    function getChecked(names, labels) {
+        let result = [];
+
+        names.forEach((name, index) => {
+            if (formData.get(name)) {
+                result.push(labels[index]);
+            }
+        });
+
+        return result.length ? result.join(", ") : "brak";
+    }
+
+    try {
+        const response = await fetch(webhookURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                embeds: [
+                    {
+                        title: "📄 KARTA UDZIELONEJ KWALIFIKOWANEJ PIERWSZEJ POMOCY",
+                        color: 16711680,
+
+                        fields: [
+                            {
+                                name: "📍 Dane zdarzenia",
+                                value:
+`**Data i miejsce:** ${val("data_miejsce")}
+**Ratownik:** ${val("ratownik")}`,
+                                inline: false
+                            },
+
+                            {
+                                name: "🧍 Poszkodowany",
+                                value:
+`**Płeć:** ${val("plec")}
+**Data ur.:** ${val("data_urodzenia")}
+**Nazwisko:** ${val("nazwisko")}
+**Imię:** ${val("imie")}
+**Uwagi:** ${val("uwagi")}`,
+                                inline: false
+                            },
+
+                            {
+                                name: "🫀 ABC",
+                                value:
+`**A:** ${getChecked(
+["A_drozne","A_udrozniono_bezprzyrz","A_odessano","A_rurka","A_nadglosniowy"],
+["drożne","bezprzyrządowo","odessano","rurka U-G","nadgłośniowy"]
+)}
+
+**B:** ${getChecked(
+["B_obecny","B_brak","B_bierna","B_czynna","B_respirator"],
+["oddech obecny","brak oddechu","tlenoterapia bierna","tlenoterapia czynna","respirator"]
+)}
+
+**C:** ${getChecked(
+["C_obecne","C_centralizacja","C_brak"],
+["krążenie obecne","centralizacja","brak krążenia"]
+)}`,
+                                inline: false
+                            },
+
+                            {
+                                name: "🩸 Obrażenia",
+                                value: getChecked(
+["odmrozenie","skazenie","podtopienie","zatrucie_wziewne","obrazenia_glowy","podejrzenie_kregoslupa","podejrzenie_klatki","podejrzenie_jamy","podejrzenie_miednicy","zlomania_koncyn","zwichniecia_skrecenia","rany_krwotoki","amputacja","zmiazdzenie"],
+["odmrożenie","skażenie","podtopienie","zatrucie wziewne","obrażenia głowy","uraz kręgosłupa","uraz klatki","uraz jamy brzusznej","uraz miednicy","złamania","zwichnięcia","rany/krwotoki","amputacja","zmiażdżenie"]
+),
+                                inline: false
+                            },
+
+                            {
+                                name: "⚠️ Objawy",
+                                value:
+getChecked(
+["drgawki","nudnosci","zaburzenia_zachowania","bol_klatki","anafilaksja","ciaza","wstrzas","duszność","omdlenie","wychlodzenie","zatrzymanie_krazenia"],
+["drgawki","nudności","zaburzenia zachowania","ból klatki","anafilaksja","ciąża","wstrząs","duszność","omdlenie","wychłodzenie","NZK"]
+) + `\nInne: ${val("inne_objawy")}`,
+                                inline: false
+                            },
+
+                            {
+                                name: "🛠️ Postępowanie",
+                                value: getChecked(
+["wsparcie_psychiczne","termoizolacja","pozycja_bezpieczna","pozycja_wznak","usuniecie_cial_obcych","uciśn_kl_piers","aed","ograniczenie_kregoslupa","unieruchomienie_zl","nosze_deska","kolnierz_szyjny","pas_stabilizacji","opat_wentyl","zabezpieczenie_amputowanych","opatrunek_osl","opatrunek_ucisk","staza_taktyczna","monitorowanie"],
+["wsparcie psychiczne","termoizolacja","pozycja bezpieczna","pozycja na wznak","usunięcie ciał obcych","RKO","AED","stabilizacja kręgosłupa","unieruchomienie","deska","kołnierz","pas stabilizacyjny","opatrunek wentylacyjny","zabezpieczenie amputacji","opatrunek","opatrunek uciskowy","staza","monitorowanie"]
+),
+                                inline: false
+                            },
+
+                            {
+                                name: "✍️ Podpis",
+                                value: val("podpis"),
+                                inline: false
+                            }
+                        ],
+
+                        footer: {
+                            text: "System KPP"
+                        },
+
+                        timestamp: new Date().toISOString()
+                    }
+                ]
+            })
+        });
+
+        if (response.ok) {
+            alert("✅ Karta wysłana na Discord!");
+        } else {
+            alert("❌ Błąd wysyłki: " + response.statusText);
+        }
+
+    } catch (err) {
+        alert("❌ Błąd: " + err.message);
+    }
+}
+</script>
 
 </body>
 </html>
